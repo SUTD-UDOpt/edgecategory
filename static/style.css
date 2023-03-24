@@ -1,0 +1,167 @@
+/* UI styling from ArcGIS */
+html,
+body,
+#viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+.esri-ui-top-right {
+    max-height: 100%;
+}
+.mainDiv {
+    background-color: white;
+    padding: 10px;
+    width: 260px;
+    margin: 5px;
+    position: absolute;
+    font-size: 14px;
+    display: none;
+}
+#toolbarDiv {
+    top: 15px;
+    right: 15px;
+    cursor: default;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+.geometry-options {
+    display: flex;
+    flex-direction: row;
+}
+.geometry-button {
+    flex: 1;
+    border-style: solid;
+    border-width: 1px;
+    border-image: none;
+}
+.geometry-button-selected {
+    background: #4c4c4c;
+    color: #fff;
+}
+.darkBlue {
+    background-color: darkblue;
+}
+
+/* Custom Styling */
+.left {
+    left: 10px;
+}
+.right {
+    right: 10px;
+}
+.top {
+    top: 10px;
+}
+.bottom {
+    bottom: 10px;
+}
+.limited {
+    max-width: 275px;
+}
+.bottomMargin {
+    margin-bottom: 10px;
+}
+#saveContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.saveSlot {
+    width: 80px;
+    height: 80px;
+    padding: 8px;
+    background-color: #f1f1f1;
+    border: solid 1px black;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.filled {
+    background-color: #aaaaaa;
+    cursor: pointer;
+}
+.selected {
+    background-color: lightseagreen;
+}
+
+/* Popup Styling */
+.pop {
+    background-color:#f3f3f3;
+    border-radius: 5px;
+    border: 2px solid #1b1b3a;
+    position: absolute;
+    color: #1b1b3a;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    padding: 1.5vw;
+    z-index: 200;
+    width: 25vw;
+    min-width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.popbg {
+    background-color: #1b1b3a;
+    opacity: 0.35;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 150;
+}
+.popcontainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: 300;
+}
+
+/* Spinner Styling */
+#loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3d3d3d;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Tree Styling */
+.node circle {
+    fill: #fff;
+    stroke: lightgray;
+    stroke-width: 3px;
+    cursor: pointer;
+}
+.node text { font: 16px sans-serif; }
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+#treeContainer {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    max-height: 50vh;
+    overflow-y: scroll;
+    border: solid black 1px;
+}

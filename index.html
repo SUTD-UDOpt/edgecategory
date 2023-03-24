@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Module A 202303</title> 
+        <script type="module" src="https://js.arcgis.com/calcite-components/1.0.3/calcite.esm.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.0.3/calcite.css">
+        <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+    </head>
+
+    <body>
+        <div id="viewDiv"></div>
+        <div id="resultDiv" class="esri-widget mainDiv top right" style="width: 500px;">
+          <b>Result Panel</b><br />
+          <div id="resultA">
+            <div id="treeContainer">
+              <div id="treeContainerDepth" style="width: auto; max-width: 100%; height: 100%; display: none;"></div>
+              <div id="treeContainerGen" style="width: auto; max-width: 100%; height: 100%; display: none;"></div>
+            </div>
+            <div class="geometry-options" id="treeButtons">
+              <button class="esri-button" id="offsetSol" style="margin: 10px;">Display Final</button>
+              <button class="esri-button" id="treeGen" style="margin: 10px;">Display Full Tree</button>
+              <button class="esri-button" id="treeDepth" style="margin: 10px;">Display Depth Tree</button>
+            </div>
+            <div id="macros" style="margin-bottom: 10px;">
+              <b>Site Average</b><br />
+              <div id="macro3">Parcel area:</div>
+              <div id="macro4">Orientation:</div>
+              <div id="macro5">Elongation:</div>
+              <div id="macro6">Compactness:</div>
+              <div id="macro7">Convexity:</div>
+            </div>
+            <b>Parcel Stats</b><br />
+            <div id="text1">Parcel key:</div>
+            <div id="text2">Parcel depth:</div>
+            <div id="text3">Parcel area:</div>
+            <div id="text4">Orientation:</div>
+            <div id="text5">Elongation:</div>
+            <div id="text6">Compactness:</div>
+            <div id="text7">Convexity:</div>
+          </div>
+          <div id="resultBViewingOptions" style="display: none; flex-direction: row; justify-content: space-between; margin-bottom: 10px;">
+            <input type="radio" id="viewB1" name="viewBOpt" value="normal" checked="checked">
+            <label for="viewB1" id="viewB1Label">Normal</label><br>
+            <input type="radio" id="viewB2" name="viewBOpt" value="orientation">
+            <label for="viewB2" id="viewB2Label">NSEW Orientation</label><br>  
+            <input type="radio" id="viewB3" name="viewBOpt" value="views">
+            <label for="viewB3" id="viewB3Label">Total Blocked Views</label><br>
+          </div> 
+          <div id="resultB" style="display: none;"></div>
+        </div>
+
+        <div id="queryDiv" class="esri-widget mainDiv bottom left" style="display: block;">
+          <b>Input Panel</b><br />
+          <br />
+          <div id="geometryContainer" class="geometry-options">
+            <button
+              class="esri-widget--button esri-icon-map-pin geometry-button"
+              id="point-geometry-button"
+              value="point"
+              title="Draw a point"
+              style="display: none;"
+            ></button>
+            <button
+              class="esri-widget--button esri-icon-polygon geometry-button"
+              id="polygon-geometry-button"
+              value="polygon"
+              title="Draw a polygon"
+            ></button>
+          </div>
+
+          <div id="sliderContainer" style="height: 500px; overflow-y: scroll; display: none;">
+            <br />
+            <tiny>Minimum Parcel Area (sqm)</tiny>
+            <calcite-slider id="minArea" value="10000" min="5000" max="40000" precise ticks="5000" label-handles max-label="40000sqm" min-label="5000sqm" snap="true" step="2500"></calcite-slider>
+            <br />
+            <tiny>Ideal Orientation (0 = N-S, 1 = W-E)</tiny>
+            <calcite-slider id="orientation" value="0" min="0" max="1" precise ticks="0.1" label-handles snap="true" step="0.05"></calcite-slider>
+            <br />
+            <tiny>Percentage of Primary Roads (%)</tiny>
+            <calcite-slider id="pRoad" value="10" min="0" max="100" precise ticks="10" label-handles snap="true" step="5"></calcite-slider>
+            <br />
+            <tiny>Percentage of Secondary Roads (%)</tiny>
+            <calcite-slider id="sRoad" value="20" min="0" max="100" precise ticks="10" label-handles snap="true" step="5"></calcite-slider>
+            <br />
+            <br />
+            <div id="weightSliders">
+              <div><b>Weights</b></div>
+              <tiny>Divergence</tiny>
+              <calcite-slider id="w0" value="0.1" min="0" max="1" precise ticks="0.1" label-handles snap="true" step="0.05"></calcite-slider>
+              <tiny>Continuity</tiny>
+              <calcite-slider id="w1" value="0.1" min="0" max="1" precise ticks="0.1" label-handles snap="true" step="0.05"></calcite-slider>
+              <tiny>Singularity</tiny>
+              <calcite-slider id="w2" value="0.8" min="0" max="1" precise ticks="0.1" label-handles snap="true" step="0.05"></calcite-slider>
+              <tiny>Even Area</tiny>
+              <calcite-slider id="w3" value="0.8" min="0" max="1" precise ticks="0.1" label-handles snap="true" step="0.05"></calcite-slider>
+              <tiny>Elongation</tiny>
+              <calcite-slider id="w4" value="0.5" min="0" max="1" precise ticks="0.1" label-handles snap="true" step="0.05"></calcite-slider>
+              <tiny>Compactness</tiny>
+              <calcite-slider id="w5" value="0.5" min="0" max="1" precise ticks="0.1" label-handles snap="true" step="0.05"></calcite-slider>
+              <tiny>Convexity</tiny>
+              <calcite-slider id="w6" value="0.5" min="0" max="1" precise ticks="0.1" label-handles snap="true" step="0.05"></calcite-slider>
+              <tiny>Orientation</tiny>
+              <calcite-slider id="w7" value="0.8" min="0" max="1" precise ticks="0.1" label-handles snap="true" step="0.05"></calcite-slider>
+            </div>
+          </div>
+
+          <div id="measurementContainer">
+            <br />
+            <tiny>Measurement Tools</tiny>
+            <div id="toolbarDiv" class="esri-component esri-widget" style="margin-top: 10px;">
+              <button
+                id="distance"
+                class="esri-widget--button esri-interactive esri-icon-measure-line"
+                title="Distance Measurement Tool"
+              ></button>
+              <button
+                id="area"
+                class="esri-widget--button esri-interactive esri-icon-measure-area"
+                title="Area Measurement Tool"
+              ></button>
+              <button
+                id="clearMe"
+                class="esri-widget--button esri-interactive esri-icon-trash"
+                title="Clear Measurements"
+              ></button>
+            </div>
+          </div>
+          <!-- <br />
+          <button class="esri-button" id="test" type="button">
+            Test
+          </button> -->
+          <br />
+          <button class="esri-button limited" id="clearFilter" type="button">
+            Clear
+          </button>
+          <br />
+          <button class="esri-button limited" id="saveButton" type="button" style="margin-bottom: 10px; display: none;">
+            Save Solution
+          </button>
+          <button class="esri-button limited darkBlue" id="multiButton" type="button" style="margin-bottom: 10px; display: none;">
+            Assign Programs
+          </button>
+          <div id="markers" style="display: none; flex-direction: row; justify-content: space-between; margin-bottom: 10px;">
+            <div style="background-color: blue; width: 20px; height: 20px;"></div>
+            <button id="markResi">Residential</button>
+            <div style="background-color: green; width: 20px; height: 20px;"></div>
+            <button id="markGreen">Greenspace</button>
+          </div>
+          <button class="esri-button limited darkBlue" id="modBButton" type="button" style="margin-bottom: 10px; display: none;">
+            Generate Building Geometry
+          </button>
+          <button class="esri-button limited darkBlue" id="actionButton" type="button">
+            Process Polygon
+          </button>
+        </div>
+
+        <div id="saveDiv" class="esri-widget mainDiv bottom right" style="display: none; width: 500px;">
+          <b>Save Slots</b>
+          <div id="saveContainer">
+            <div id="save0" class="saveSlot filled">current</div>
+            <div id="save1" class="saveSlot">1</div>
+            <div id="save2" class="saveSlot">2</div>
+            <div id="save3" class="saveSlot">3</div>
+            <div id="save4" class="saveSlot">4</div>
+          </div>
+          <button class="esri-button limited" id="downloadButton" type="button" style="margin-top: 10px;">
+            Download JSON
+          </button>
+        </div>
+
+        <div id="popup" class="popcontainer" style="display: none;">
+          <div id="darkbg" class="popbg"></div>
+          <div id="savePrompt" class="pop" style="display: none;">
+            <b>Input label for this save file</b>
+            <br />
+            <label for="labelName">Label:</label>
+            <input type="text" id="saveLabel" name="labelName"><br>
+            <br />
+            <b>Select save slot</b>
+            <br />
+            <input type="radio" id="slot1" name="slotOpt" value="1">
+            <label for="slot1" id="slot1label"></label><br>
+            <input type="radio" id="slot2" name="slotOpt" value="2">
+            <label for="slot2" id="slot2label"></label><br>  
+            <input type="radio" id="slot3" name="slotOpt" value="3">
+            <label for="slot3" id="slot3label"></label><br>
+            <input type="radio" id="slot4" name="slotOpt" value="4">
+            <label for="slot4" id="slot4label"></label><br><br>
+            <button class="esri-button" id="finalSaveButton" type="button">
+              Save
+            </button>
+          </div>
+
+          <div id="resetPrompt" class="pop" style="display: none;">
+            <input type="checkbox" id="reset1" name="resetOpt1">
+            <label for="reset1" id="resetOpt1label">Retain Polygon Selection</label><br>
+            <input type="checkbox" id="reset2" name="resetOpt2">
+            <label for="reset2" id="resetOpt2label">Retain Access Point Selection</label><br><br> 
+            <button class="esri-button" id="finalResetButton" type="button">
+              Reset
+            </button>
+          </div>
+
+          <div id="optimizePrompt" class="pop" style="display: none;">
+            <b>Input Optimization Params</b>
+            <br />
+            <input type="text" id="param1" value="0.3,1">
+            <label for="param1" id="param1label">BKeyX Scale [2 vals, no space aft comma]</label><br>
+            <input type="text" id="param2" value="0.3,1">
+            <label for="param2" id="param2label">BKeyY Scale [2 vals, no space aft comma]</label><br>
+            <input type="text" id="param3" value="54,108">
+            <label for="param3" id="param3label">Grid Angle [2 vals, no space aft comma]</label><br>
+            <input type="text" id="param4" value="25,30">
+            <label for="param4" id="param4label">Grid Spacing [2 vals, no space aft comma]</label><br>
+            <input type="text" id="param5" value="0.2,0.8">
+            <label for="param5" id="param5label">Parcel Storey Scale [2 vals, no space aft comma]</label><br>
+            <input type="text" id="param6" value="0.9">
+            <label for="param6" id="param6label">Crossover Rate</label><br>
+            <input type="text" id="param7" value="2">
+            <label for="param7" id="param7label">Generation Count</label><br>
+            <input type="text" id="param8" value="0.4">
+            <label for="param8" id="param8label">Mutation Rate</label><br>
+            <input type="text" id="param9" value="2">
+            <label for="param9" id="param9label">Population Count</label><br>
+            <input type="text" id="param10" value="2.8">
+            <label for="param10" id="param10label">GPR [input separated with commas, will repeat the same value if not enough is provided]</label><br><br>
+            <button class="esri-button" id="optButton" type="button">
+              Optimize
+            </button>
+          </div>
+        </div>
+        <div id="loader" style="display: none;"></div>
+      </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://js.arcgis.com/4.25/"></script>
+    <script src="static/js/general.js"></script>
+    <script src="static/js/functions.js"></script>
+    <script src="static/js/script.js" type="module"></script>
+</html>

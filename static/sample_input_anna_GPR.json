@@ -1,0 +1,324 @@
+{
+    "4": {
+        "BKeySelection": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            12,
+            14
+        ],
+        "EdgeCategory": [
+            4,
+            4,
+            6,
+            5,
+            4
+        ],
+        "GPR": "2.8",
+        "OptimisationParameters": {
+            "CrossOverRate": "0.9",
+            "GenerationCount": "2",
+            "MutationRate": "0.4",
+            "ObjectiveWeights": null,
+            "PopulationCount": "2"
+        },
+        "ParameterRanges": {
+                "BKeyXScale": [
+                    "0.3",
+                    "1"
+                ],
+                "BKeyYScale": [
+                    "0.3",
+                    "1"
+                ],
+                "GridAngle": [
+                    "54",
+                    "108"
+                ],
+                "GridSpacing": [
+                    "25",
+                    "30"
+                ],
+                "ParcelStoreyScale": [
+                    "0.2",
+                    "0.8"
+                ]
+            },
+        "ParcelCoordinates": [
+            [
+                11572490.0295,
+                151015.496291,
+                0
+            ],
+            [
+                11572539.6371,
+                150858.001547,
+                0
+            ],
+            [
+                11572625.9741,
+                150857.294336,
+                0
+            ],
+            [
+                11572620.5235,
+                150983.440635,
+                0
+            ],
+            [
+                11572548.7585,
+                151072.236692,
+                0
+            ],
+            [
+                11572490.0295,
+                151015.496291,
+                0
+            ]
+        ]
+    },
+    "6": {
+        "BKeySelection": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            12,
+            14
+        ],
+        "EdgeCategory": [
+            4,
+            3,
+            3,
+            5
+        ],
+        "GPR": "2.8",
+        "OptimisationParameters": {
+            "CrossOverRate": "0.9",
+            "GenerationCount": "2",
+            "MutationRate": "0.4",
+            "ObjectiveWeights": null,
+            "PopulationCount": "2"
+        },
+        "ParameterRanges": [
+            {
+                "BKeyXScale": [
+                    "0.3",
+                    "1"
+                ],
+                "BKeyYScale": [
+                    "0.3",
+                    "1"
+                ],
+                "GridAngle": [
+                    "54",
+                    "108"
+                ],
+                "GridSpacing": [
+                    "25",
+                    "30"
+                ],
+                "ParcelStoreyScale": [
+                    "0.2",
+                    "0.8"
+                ]
+            }
+        ],
+        "ParcelCoordinates": [
+            [
+                11572856.2302,
+                150810.066154,
+                0
+            ],
+            [
+                11572721.6331,
+                150817.976364,
+                0
+            ],
+            [
+                11572717.6759,
+                150712.100628,
+                0
+            ],
+            [
+                11572850.1139,
+                150709.23012,
+                0
+            ],
+            [
+                11572856.2302,
+                150810.066154,
+                0
+            ]
+        ]
+    },
+    "7": {
+        "BKeySelection": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            12,
+            14
+        ],
+        "EdgeCategory": [
+            5,
+            5,
+            3,
+            5,
+            3
+        ],
+        "GPR": "2.8",
+        "OptimisationParameters": {
+            "CrossOverRate": "0.9",
+            "GenerationCount": "2",
+            "MutationRate": "0.4",
+            "ObjectiveWeights": null,
+            "PopulationCount": "2"
+        },
+        "ParameterRanges": [
+            {
+                "BKeyXScale": [
+                    "0.3",
+                    "1"
+                ],
+                "BKeyYScale": [
+                    "0.3",
+                    "1"
+                ],
+                "GridAngle": [
+                    "54",
+                    "108"
+                ],
+                "GridSpacing": [
+                    "25",
+                    "30"
+                ],
+                "ParcelStoreyScale": [
+                    "0.2",
+                    "0.8"
+                ]
+            }
+        ],
+        "ParcelCoordinates": [
+            [
+                11572625.5817,
+                150831.296679,
+                0
+            ],
+            [
+                11572544.0955,
+                150831.964154,
+                0
+            ],
+            [
+                11572551.1759,
+                150715.709408,
+                0
+            ],
+            [
+                11572717.6759,
+                150712.100628,
+                0
+            ],
+            [
+                11572721.6308,
+                150817.912654,
+                0
+            ],
+            [
+                11572625.5817,
+                150831.296679,
+                0
+            ]
+        ]
+    },
+    "8": {
+        "BKeySelection": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            12,
+            14
+        ],
+        "EdgeCategory": [
+            4,
+            5,
+            4,
+            5
+        ],
+        "GPR": "2.8",
+        "OptimisationParameters": {
+            "CrossOverRate": "0.9",
+            "GenerationCount": "2",
+            "MutationRate": "0.4",
+            "ObjectiveWeights": null,
+            "PopulationCount": "2"
+        },
+        "ParameterRanges": [
+            {
+                "BKeyXScale": [
+                    "0.3",
+                    "1"
+                ],
+                "BKeyYScale": [
+                    "0.3",
+                    "1"
+                ],
+                "GridAngle": [
+                    "54",
+                    "108"
+                ],
+                "GridSpacing": [
+                    "25",
+                    "30"
+                ],
+                "ParcelStoreyScale": [
+                    "0.2",
+                    "0.8"
+                ]
+            }
+        ],
+        "ParcelCoordinates": [
+            [
+                11572533.1187,
+                150716.100786,
+                0
+            ],
+            [
+                11572526.0583,
+                150832.028369,
+                0
+            ],
+            [
+                11572393.9024,
+                150831.761966,
+                0
+            ],
+            [
+                11572392.3419,
+                150719.152031,
+                0
+            ],
+            [
+                11572533.1187,
+                150716.100786,
+                0
+            ]
+        ]
+    }
+}
